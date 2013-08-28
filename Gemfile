@@ -28,6 +28,7 @@ group :development, :test do
   gem 'rspec', '2.11.0'
   gem 'rb-fsevent', '~> 0.9.1'
   gem 'jasmine'
+  gem 'jasmine-rails'
   gem 'jasminerice', '0.0.10'
   gem 'guard'
   gem 'guard-jasmine'
@@ -39,10 +40,11 @@ end
 
 gem 'useragent', '0.4.16'
 gem 'uuid', '2.3.5'
-gem 'logging', '1.8.0'
+# gem 'logging', '1.8.0'
 gem 'rack-test', '0.6.2'
 gem 'rest-client', '1.6.7'
 gem 'net-http-persistent', '2.8'
 gem 'httpclient', '2.3.0.1'
 
 gem 'active_attr'
+gem 'sqlite3'

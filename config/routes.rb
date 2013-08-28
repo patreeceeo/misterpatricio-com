@@ -1,5 +1,11 @@
 Beer::Application.routes.draw do
+  get "beer/intro"
+
   get "intro/index"
+  
+  root :to => 'intro#index'
+
+  mount JasmineRails::Engine => '/spec' if defined?(JasmineRails)
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
