@@ -58,5 +58,11 @@ module Beer
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # On Heroku, the environment has not been setup when it precompiles assets
+    # And since rails wants to connect to the database when initializing, initializing
+    # during precompilation will cause the build to fail. See 
+    # https://devcenter.heroku.com/articles/rails-asset-pipeline#troubleshooting
+    config.assets.initialize_on_precompile = false
   end
 end
