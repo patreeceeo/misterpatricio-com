@@ -139,6 +139,7 @@ GEM
       railties (>= 3.1)
     multi_json (1.7.9)
     net-http-persistent (2.8)
+    pg (0.16.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -253,6 +254,7 @@ DEPENDENCIES
   marionette-rails
   momentjs-rails
   net-http-persistent (= 2.8)
+  pg
   rack-livereload
   rack-test (= 0.6.2)
   rails (= 3.2.12)

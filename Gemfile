@@ -39,6 +39,7 @@ group :development, :test do
   gem 'rack-livereload'
 end
 
+# Needed by Heroku
 group :production do
   gem 'pg'
 end
