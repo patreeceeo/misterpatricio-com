@@ -55,3 +55,5 @@ gem 'net-http-persistent', '2.8'
 gem 'httpclient', '2.3.0.1'
 
 gem 'active_attr'
+
+gem 'newrelic_rpm'
