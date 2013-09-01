@@ -26,18 +26,18 @@ buildOption = (option_key, more_args...) ->
   new Klass more_args...
 
 
-class SocialPromote.ItemView extends Marionette.ItemView
+class ItemView extends Marionette.ItemView
   serializeData: serializeData
   buildOption: buildOption
 
-class SocialPromote.CollectionView extends Marionette.CollectionView
+class CollectionView extends Marionette.CollectionView
   serializeData: serializeData
   buildOption: buildOption
 
-class SocialPromote.CompositeView extends Marionette.CompositeView
+class CompositeView extends Marionette.CompositeView
   serializeData: serializeData
   buildOption: buildOption
 
-class SocialPromote.Layout extends Marionette.Layout
+class Layout extends Marionette.Layout
   serializeData: serializeData
   buildOption: buildOption
