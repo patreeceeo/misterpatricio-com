@@ -43,6 +43,7 @@ end
 # Needed by Heroku
 group :production do
   gem 'pg', '0.16.0'
+  gem 'rails_12factor'
 end
 
 gem 'useragent', '0.4.16'
