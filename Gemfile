@@ -21,6 +21,7 @@ end
 
 group :development do
   gem 'watchr', '0.7'
+  gem 'sqlite3'
 end
 
 group :development, :test do
@@ -47,4 +48,3 @@ gem 'net-http-persistent', '2.8'
 gem 'httpclient', '2.3.0.1'
 
 gem 'active_attr'
-gem 'sqlite3'
