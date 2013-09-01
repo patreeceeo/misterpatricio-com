@@ -39,6 +39,10 @@ group :development, :test do
   gem 'rack-livereload'
 end
 
+group :production do
+  gem 'pg'
+end
+
 gem 'useragent', '0.4.16'
 gem 'uuid', '2.3.5'
 # gem 'logging', '1.8.0'
