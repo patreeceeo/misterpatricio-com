@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 source :rubyforge
 
+ruby '1.9.3'
+
 gem 'rails', '3.2.12'
 
 # Gems used only for assets and not required
