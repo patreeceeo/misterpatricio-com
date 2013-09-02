@@ -6,11 +6,37 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-  <link href='http://fonts.googleapis.com/css?family=Niconne|Sail|Great+Vibes|Freckle+Face|Pinyon+Script|Fondamento|Montaga|Rock+Salt|Lancelot|Arizonia|Monsieur+La+Doulaise' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Freckle+Face' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
+<section class='spacer'></section>
+<header>
+  <select>
+    <optgroup>
+      <option value='intro'>Intro</option>
+      <option value='personal'>Personal Stuff</option>
+      <option value='hobbies'>Hobbies</option>
+    </optgroup>
+    <optgroup label='technology'>
+      <option value='javascript'>JavaScript</option>
+      <option value='ruby'>Ruby</option>
+      <option value='python'>Python</option>
+      <option value='general'>General</option>
+     </optgroup>
+  </select>
+</header>
 <%= yield %>
+
+<section class='spacer'></section>
+
+<div id='background-credit'>
+  <p>
+    Background adapted from<br>sweet original work<br>
+    by <a href='http://shapesofsweetness.com/'>Corey Thompson</a>.
+  </p>
+</div>
+
 
 </body>
 </html>

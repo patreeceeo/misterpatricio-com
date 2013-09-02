@@ -19,17 +19,29 @@ h1 {
   font-size: 200%;
 }
 
-section {
+header, section {
+  margin: 0em auto;
   width: 700px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 500;
+  select {
+    -webkit-appearance: none;
+    // font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    padding: 5px;
+    border: 0;
+    cursor: pointer;
+  }
+}
+
+section {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 2em;
   // background-color: rgba(255, 255, 255, 0.90);
   background: white url('crumpled-paper-opt.jpg');
   background-size: cover;
   background-repeat: repeat-y;
-  margin: 3em auto;
-  padding: 2em;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 500;
 }
 
 #background-credit {
