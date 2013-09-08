@@ -3,7 +3,14 @@ Beer::Application.routes.draw do
 
   get "intro/index"
   get "intro/personal"
+  get "intro/hobbies"
+  get "intro/garage"
   
+  get "intro/javascript"
+  get "intro/ruby"
+  get "intro/python"
+  get "intro/general"
+
   root :to => 'intro#index'
 
   mount JasmineRails::Engine => '/spec' if defined?(JasmineRails)
