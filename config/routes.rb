@@ -2,6 +2,7 @@ Beer::Application.routes.draw do
   get "beer/intro"
 
   get "intro/index"
+  get "intro/personal"
   
   root :to => 'intro#index'
 

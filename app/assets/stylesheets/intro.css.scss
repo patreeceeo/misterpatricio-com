@@ -12,10 +12,13 @@ body {
   background-repeat: no-repeat;
 
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 1em;
 }
 
-h1 {
+h1, h2, h3 {
   font-family: 'Freckle Face', cursive; 
+}
+h1 {
   font-size: 200%;
 }
 
@@ -31,7 +34,16 @@ header, section {
     padding: 5px;
     border: 0;
     cursor: pointer;
+    font-size: 1em;
   }
+  select, h3 {
+    display: inline-block;
+    margin: 0;
+  }
+}
+
+.gray {
+  color: #777;
 }
 
 section {
