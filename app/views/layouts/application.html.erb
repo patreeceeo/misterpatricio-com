@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Beer</title>
+  <title>Mr. Patricio</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -11,22 +11,7 @@
 <body>
 
 <section class='spacer'></section>
-<header>
-  <select>
-    <optgroup>
-      <option value='intro'>Intro</option>
-      <option value='personal'>Personal Stuff</option>
-      <option value='hobbies'>Hobbies</option>
-      <option value='garage'>The Garage</option>
-    </optgroup>
-    <optgroup label='technology'>
-      <option value='javascript'>JavaScript</option>
-      <option value='ruby'>Ruby</option>
-      <option value='python'>Python</option>
-      <option value='general'>General</option>
-     </optgroup>
-  </select>
-</header>
+<%= render 'navigation' %>
 <%= yield %>
 
 <section class='spacer'></section>

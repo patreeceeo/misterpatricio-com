@@ -46,6 +46,7 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'haml'
 gem 'useragent', '0.4.16'
 gem 'uuid', '2.3.5'
 # gem 'logging', '1.8.0'
