@@ -1,12 +1,14 @@
 %header
-  %select(data-js='navigation')
-    %optgroup
-      %option(value='index')      Intro 
-      %option(value='personal')   Personal Stuff
-      %option(value='hobbies')    Hobbies
-      %option(value='garage')     The Garage
-    %optgroup(label='technology')
-      %option(value='javascript') JavaScript
-      %option(value='ruby')       Ruby
-      %option(value='python')     Python
-      %option(value='general')    General
+  .navigation.ib
+    %select(data-js='navigation')
+      %optgroup
+        %option(value='index')      Intro
+        %option(value='personal')   Personal Stuff
+        %option(value='hobbies')    Hobbies
+        %option(value='garage')     The Garage
+      %optgroup(label='technology')
+        %option(value='javascript') JavaScript
+        %option(value='ruby')       Ruby
+        %option(value='python')     Python
+        %option(value='general')    General
+    .ib(data-js='navigation-arrow')

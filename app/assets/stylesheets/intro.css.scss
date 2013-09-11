@@ -28,17 +28,24 @@ header, section {
   box-sizing: border-box;
   position: relative;
   z-index: 500;
+  .navigation {
+    margin: 0;
+  }
+}
+
+.ib {
+  display: inline-block;
+}
+
+.navigation {
+  background-color: white;
   select {
     -webkit-appearance: none;
-    // font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    appearance: none;
     padding: 5px;
     border: 0;
     cursor: pointer;
     font-size: 1em;
-  }
-  select, h3 {
-    display: inline-block;
-    margin: 0;
   }
 }
 
