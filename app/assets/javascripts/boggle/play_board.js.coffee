@@ -5,12 +5,12 @@ class Boggle.PlayBoard
   letters = for c in [0...26]
     String.fromCharCode 65 + c
   constructor: (options) ->
-    @width = options?.width or 5
-    @height = options?.height or 5
-    @board =
-      for y in [0...@height]
-        for x in [0...@width]
-          letters[Math.floor Math.random() * letters.length]
+    @width = options?.board?[0].length or options?.width or 5
+    @height = options?.board?.length or options?.height or 5
+    @board = options?.board or
+    for y in [0...@height]
+      for x in [0...@width]
+        letters[Math.floor Math.random() * letters.length]
   square: (x, y) ->
     value = @board[y]?[x]
     isAdjacentTo: (x2, y2) =>
