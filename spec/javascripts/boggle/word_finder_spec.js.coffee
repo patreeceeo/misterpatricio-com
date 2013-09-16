@@ -1,6 +1,8 @@
 #= require boggle/word_bank
 #= require boggle/play_board
 #= require boggle/word_finder
+#= require boggle/game_words
+#= require moment
 
 describe 'The Boggle Word Finder', ->
   finder = null
@@ -9,71 +11,48 @@ describe 'The Boggle Word Finder', ->
 
   beforeEach ->
     word_bank = new Boggle.WordBank [
-      'ABC'
-      'ABA'
-      'XYZ'
-      'OXO'
+      'banana'
+      'boogie'
+      'noodle'
     ]
     play_board = new Boggle.PlayBoard
       board: [
-        ['A', ' ', 'O', ' ']
-        ['B', 'C', 'X', 'O']
-        ['A', ' ', 'Y', ' ']
-        [' ', ' ', 'Z', ' ']
+        [' ', ' ', 'l', 'e', ' ', ' ', ' ']
+        [' ', 'o', 'd', ' ', ' ', ' ', ' ']
+        [' ', 'o', 'n', 'a', 'n', ' ', ' ']
+        [' ', ' ', 'a', ' ', 'a', ' ', ' ']
+        [' ', ' ', 's', ' ', 'b', 'o', ' ']
+        [' ', ' ', ' ', ' ', ' ', 'o', 'g']
+        [' ', ' ', ' ', ' ', ' ', 'e', 'i']
+        ['e', 'l', 'd', 'o', 'o', 'n', ' ']
       ]
     finder = new Boggle.WordFinder
       play_board: play_board
       word_bank: word_bank
 
-  it 'should find all the words in the word bank', ->
+  it 'should find well hidden words and only one of each', ->
     expect(finder.find()).toEqual [
-      'ABC'
-      'OXO'
-      'ABA'
-      'XYZ'
+      'boogie'
+      'noodle'
+      'banana'
     ]
 
-  # describe 'When the board is randomly generated', ->
+  describe 'When the board is randomly generated', ->
 
-  #   beforeEach ->
-  #     word_bank = new Boggle.WordBank [
-  #       'ANT'
-  #       'CAN'
-  #       'EEL'
-  #       'ZEE'
-  #       'HAS'
-  #       'NAN'
-  #       'YOU'
-  #       'WEE'
-  #       'PEE'
-  #       'PEA'
-  #       'SEE'
-  #       'SEA'
-  #       'SHH'
-  #       'OLE'
-  #       'TOP'
-  #       'JOB'
-  #       'SOB'
-  #       'COB'
-  #       'HOB'
-  #       'POP'
-  #       'SOP'
-  #       'SOB'
-  #       'CRY'
-  #       'DIE'
-  #     ]
-  #     play_board = new Boggle.PlayBoard
-  #       height: 9
-  #       width: 9
-  #     finder = new Boggle.WordFinder
-  #       play_board: play_board
-  #       word_bank: word_bank
-  #     console.debug play_board.board
+    beforeEach ->
+      word_bank = new Boggle.WordBank GAME_WORDS
+      play_board = new Boggle.PlayBoard
+        height: 5
+        width: 5
+      finder = new Boggle.WordFinder
+        play_board: play_board
+        word_bank: word_bank
       
-  #   it 'should not blow up', ->
-  #     r = null
-  #     expect(-> r = finder.find()).not.toThrow()
-  #     console.debug r
+    it 'should take less than 3 seconds', ->
+      start = moment()
+      result = finder.find()
+      done = moment()
+      expect(done.diff(start)).toBeLessThan 3000
     
 
 

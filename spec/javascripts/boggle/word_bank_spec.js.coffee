@@ -1,4 +1,6 @@
 #= require boggle/word_bank
+#= require boggle/game_words
+#= require moment
 
 describe 'The Boggle Word Bank', ->
 
@@ -33,5 +35,14 @@ describe 'The Boggle Word Bank', ->
     expect(word_bank.lookup('tearses')).toEqual []
 
 
+  it "should take less than 10 milliseconds to look up a prefix.", ->
+    word_bank = new Boggle.WordBank GAME_WORDS
+    start = moment()
+    result = word_bank.lookup('toast')
+    done = moment()
+    expect(done.diff(start)).toBeLessThan 10
+    console.debug 'result', result,'time',done.diff(start)
+
+    
 
 

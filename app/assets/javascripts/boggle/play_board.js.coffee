@@ -3,7 +3,7 @@ window.Boggle ?= {}
 
 class Boggle.PlayBoard
   letters = for c in [0...26]
-    String.fromCharCode 65 + c
+    String.fromCharCode 97 + c
   constructor: (options) ->
     @width = options?.board?[0].length or options?.width or 5
     @height = options?.board?.length or options?.height or 5
@@ -19,6 +19,15 @@ class Boggle.PlayBoard
     value: @value(x, y)
   value: (x, y) ->
     @board[y]?[x]
+  toString: ->
+    lines = 
+    for y in [0..@height]
+      line = 
+      for x in [0..@width]
+        @board[y]?[x]
+      line.join('')
+    lines.join('\n')
+        
 
 
 

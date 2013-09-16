@@ -3,7 +3,7 @@
 describe 'The Boggle Play Board', ->
   play_board = null
   letters = for c in [0...26]
-    String.fromCharCode 65 + c
+    String.fromCharCode 97 + c
 
   beforeEach ->
     play_board = new Boggle.PlayBoard
