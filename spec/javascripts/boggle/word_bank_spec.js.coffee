@@ -41,7 +41,6 @@ describe 'The Boggle Word Bank', ->
     result = word_bank.lookup('toast')
     done = moment()
     expect(done.diff(start)).toBeLessThan 10
-    console.debug 'result', result,'time',done.diff(start)
 
     
 

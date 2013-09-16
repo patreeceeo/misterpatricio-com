@@ -15,9 +15,6 @@ describe 'The Boggle Play Board', ->
     expect(play_board.square(1,1).isAdjacentTo(4,4)).toBeFalsy()
     expect(play_board.square(10,10).isAdjacentTo(4,4)).toBeFalsy()
 
-  it 'should put capital letters in its squares', ->
-    expect(play_board.square(1,1).value in letters).toBeTruthy()
-
   it 'should report the correct height and width', ->
     expect(play_board.height).toBe 5
     expect(play_board.width).toBe 5

@@ -33,5 +33,7 @@ class window.Boggle.WordBank
       if word is needle
         return true
     false
+  all: ->
+    @words
 
 

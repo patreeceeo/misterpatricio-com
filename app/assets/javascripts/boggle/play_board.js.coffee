@@ -16,9 +16,12 @@ class Boggle.PlayBoard
       0 <= x <= @width and 0 <= y <= @height and
         0 <= x2 <= @width and 0 <= y2 <= @height and
         Math.abs(x - x2) <= 1 and Math.abs(y - y2) <= 1
-    value: @value(x, y)
-  value: (x, y) ->
-    @board[y]?[x]
+    value: (val) => @value(x, y, val)
+  value: (x, y, val) ->
+    if val?
+      @board[y]?[x] = val
+    else
+      @board[y]?[x]
   toString: ->
     lines = 
     for y in [0..@height]

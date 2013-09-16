@@ -42,8 +42,8 @@ describe 'The Boggle Word Finder', ->
     beforeEach ->
       word_bank = new Boggle.WordBank GAME_WORDS
       play_board = new Boggle.PlayBoard
-        height: 5
-        width: 5
+        height: 4
+        width: 4
       finder = new Boggle.WordFinder
         play_board: play_board
         word_bank: word_bank
@@ -53,6 +53,7 @@ describe 'The Boggle Word Finder', ->
       result = finder.find()
       done = moment()
       expect(done.diff(start)).toBeLessThan 3000
+      # console.debug 'found words',result
     
 
 
