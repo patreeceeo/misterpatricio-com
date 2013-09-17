@@ -33,7 +33,7 @@ header, section {
   }
 }
 
-.ib {
+.ib, .tile {
   display: inline-block;
 }
 
@@ -101,3 +101,11 @@ section.spacer {
     width: 80%;
   }
 }
+
+.boggle {
+  & .square {
+    height: 2em;
+    width: 2em;
+  }
+}
+

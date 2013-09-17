@@ -1,31 +1,26 @@
+#= require boggle/play_board
+#= require boggle/word_bank
+#= require boggle/word_finder
+#= require boggle/play_board_view
+#= require boggle/square_collection
+#= require boggle/game_words
 
-# Cube position numbering:
+app = Boggle.app = new Backbone.Marionette.Application()
 
-#  0 1 2 3
-#  4 5 6 7
-#  8 9 A B
-#  C D E F
+app.addRegions
+  play_board_region: '[data-js=play_board]'
 
-adjacency = [
-#   0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
-  [ 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]	# 0
-  [ 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]	# 1
-  [ 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 ]	# 2
-  [ 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 ]	# 3
-  [ 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0 ]	# 4
-  [ 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0 ]	# 5
-  [ 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0 ]	# 6
-  [ 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0 ]	# 7
-  [ 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0 ]	# 8
-  [ 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0 ]	# 9
-  [ 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1 ]	# A
-  [ 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1 ]	# B
-  [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0 ]	# C
-  [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0 ]	# D
-  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1 ]	# E
-  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0 ]	# F
-]
+play_board = new Boggle.PlayBoard
+  height: 4
+  width: 4
 
+square_collection = new Boggle.SquareCollection(
+  {value: value} for value in play_board.values()
+)
 
+play_board_view = new Boggle.PlayBoardView
+  collection: square_collection
 
+$ ->
+  app.play_board_region.show play_board_view
 
