@@ -7,7 +7,7 @@ class Boggle.WordFinder
     @bank = config.word_bank
     @_byCoords = {}
 
-  _thru: (x, y, found, momentum)->
+  _thru: (x, y, found, momentum) ->
     letter = @board.value(x, y)
     if @bank.lookup(letter)
       @prefixes(x, y).push letter
@@ -30,49 +30,49 @@ class Boggle.WordFinder
     left = [width-1..0]
     up = [height-1..0]
     if direction is 'right_then_down'
-      momentum = 
+      momentum =
         vectors: [[0, 1], [1, 0]]
       for y in down
         for x in right
           @_thru(x, y, found, momentum)
     if direction is 'left_then_down'
-      momentum = 
+      momentum =
         vectors: [[0, 1], [-1, 0]]
       for y in down
         for x in left
           @_thru(x, y, found, momentum)
     if direction is 'right_then_up'
-      momentum = 
+      momentum =
         vectors: [[0, -1], [1, 0]]
       for y in up
         for x in right
           @_thru(x, y, found, momentum)
     if direction is 'left_then_up'
-      momentum = 
+      momentum =
         vectors: [[0, -1], [-1, 0]]
       for y in up
         for x in left
           @_thru(x, y, found, momentum)
     if direction is 'down_then_right'
-      momentum = 
+      momentum =
         vectors: [[0, 1], [1, 0]]
       for x in right
         for y in down
           @_thru(x, y, found, momentum)
     if direction is 'down_then_left'
-      momentum = 
+      momentum =
         vectors: [[0, 1], [-1, 0]]
       for x in left
         for y in down
           @_thru(x, y, found, momentum)
     if direction is 'up_then_right'
-      momentum = 
+      momentum =
         vectors: [[0, -1], [1, 0]]
       for x in right
         for y in up
           @_thru(x, y, found, momentum)
     if direction is 'up_then_left'
-      momentum = 
+      momentum =
         vectors: [[0, -1], [-1, 0]]
       for x in left
         for y in up
