@@ -1,3 +1,6 @@
+#= require mousetrap
+#= require mousetrap-global-bind
+#= require backbone.mousetrap
 
 window.Boggle ?= {}
 
@@ -19,6 +22,12 @@ class Boggle.InputView extends Backbone.View
     @model = new InputModel()
     @listenTo @model, 'change', @render
     @hasFocus = true
+  keyboardEvents:
+    'enter': ->
+      @trigger 'word:submit', @model.text()
+      @model.clear()
+    'backspace': (e) ->
+      e.preventDefault()
   documentKeypress: (e) =>
     console.debug 'charCode',e.charCode
     if e.charCode is 27
@@ -26,14 +35,14 @@ class Boggle.InputView extends Backbone.View
     if @hasFocus
       e.preventDefault()
       e.stopPropagation()
-      switch e.charCode
-        when 13
-          @trigger 'word:submit', @model.text()
-          @model.clear()
-        when 27
-          @model.clear()
-        else
-          @model.append String.fromCharCode e.charCode
+      # switch e.charCode
+      #   when 13
+      #     # @trigger 'word:submit', @model.text()
+      #     # @model.clear()
+      #   when 27
+      #     # @model.clear()
+      #   else
+      @model.append String.fromCharCode e.charCode
   render: ->
     @$el.text @model.text()
 
