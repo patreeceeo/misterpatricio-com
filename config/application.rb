@@ -64,5 +64,7 @@ module Beer
     # during precompilation will cause the build to fail. See 
     # https://devcenter.heroku.com/articles/rails-asset-pipeline#troubleshooting
     config.assets.initialize_on_precompile = false
+
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
   end
 end
