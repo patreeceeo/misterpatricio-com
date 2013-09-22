@@ -29,19 +29,11 @@ class Boggle.InputView extends Backbone.View
     'backspace': (e) ->
       e.preventDefault()
   documentKeypress: (e) =>
-    console.debug 'charCode',e.charCode
-    if e.charCode is 27
-      @hasFocus = not @hasFocus
-    if @hasFocus
+    console.debug 'event',e
+    if not e.ctrlKey and not e.altKey and not e.metaKey and
+        65 <= e.charCode <= 122
       e.preventDefault()
       e.stopPropagation()
-      # switch e.charCode
-      #   when 13
-      #     # @trigger 'word:submit', @model.text()
-      #     # @model.clear()
-      #   when 27
-      #     # @model.clear()
-      #   else
       @model.append String.fromCharCode e.charCode
   render: ->
     @$el.text @model.text()
