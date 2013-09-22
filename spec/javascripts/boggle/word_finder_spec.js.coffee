@@ -17,20 +17,20 @@ describe 'The Boggle Word Finder', ->
     ]
     play_board = new Boggle.PlayBoard
       board: [
-        [' ', ' ', 'l', 'e', ' ', ' ', ' ']
+        [' ', ' ', 'l', 'e', ' ', 'm', 'a']
         [' ', 'o', 'd', ' ', ' ', ' ', ' ']
-        [' ', 'o', 'n', 'a', 'n', ' ', ' ']
-        [' ', ' ', 'a', ' ', 'a', ' ', ' ']
+        [' ', 'o', 'n', 'a', 'n', ' ', 'd']
+        [' ', ' ', 'a', ' ', 'a', ' ', 'i']
         [' ', ' ', 's', ' ', 'b', 'o', ' ']
-        [' ', ' ', ' ', ' ', ' ', 'o', 'g']
-        [' ', ' ', ' ', ' ', ' ', 'e', 'i']
-        ['e', 'l', 'd', 'o', 'o', 'n', ' ']
+        ['e', ' ', ' ', ' ', ' ', 'o', 'g']
+        [' ', 'l', ' ', ' ', ' ', 'e', 'i']
+        [' ', ' ', 'd', 'o', 'o', 'n', ' ']
       ]
     finder = new Boggle.WordFinder
       play_board: play_board
       word_bank: word_bank
 
-  it 'should find well hidden words and only one of each', ->
+  it 'should find well hidden words and only one of each, also it should not reuse squares in one word.', ->
     expect(finder.find()).toEqual [
       'boogie'
       'noodle'

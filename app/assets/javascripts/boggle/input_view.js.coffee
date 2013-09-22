@@ -15,21 +15,24 @@ class InputModel extends Backbone.Model
       @set 'text', "#{text}#{postfix}"
   clear: ->
     @set 'text', ''
+  backspace: ->
+    text = @text()
+    @set 'text', text.substring(0, text.length-1)
 
 class Boggle.InputView extends Backbone.View
   initialize: ->
     $(document).keypress @documentKeypress
     @model = new InputModel()
     @listenTo @model, 'change', @render
-    @hasFocus = true
   keyboardEvents:
-    'enter': ->
+    'enter': (e) ->
+      e.preventDefault()
       @trigger 'word:submit', @model.text()
       @model.clear()
     'backspace': (e) ->
+      @model.backspace()
       e.preventDefault()
   documentKeypress: (e) =>
-    console.debug 'event',e
     if not e.ctrlKey and not e.altKey and not e.metaKey and
         65 <= e.charCode <= 122
       e.preventDefault()

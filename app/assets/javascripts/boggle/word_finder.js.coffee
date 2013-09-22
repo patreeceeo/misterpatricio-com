@@ -15,8 +15,14 @@ class Boggle.WordFinder
       x2 = x - vector[0]
       y2 = y - vector[1]
       if @board.square(x, y).isAdjacentTo(x2, y2)
-        for prefix in @prefixes(x2, y2)
-          new_prefix = "#{prefix}#{letter}"
+        for prefix2 in @prefixes(x2, y2)
+          # An attempt to prevent repeated squares:
+          # repeated_squares = false
+          # for prefix in @prefixes(x, y)
+          #   if prefix2.search(prefix) == 0
+          #     repeated_squares = true
+          # if not repeated_squares 
+          new_prefix = "#{prefix2}#{letter}"
           if @bank.has new_prefix
             found[new_prefix] = true
           else if @bank.lookup(new_prefix).length > 0
@@ -31,49 +37,49 @@ class Boggle.WordFinder
     up = [height-1..0]
     if direction is 'right_then_down'
       momentum =
-        vectors: [[0, 1], [1, 0]]
+        vectors: [[1, 1], [0, 1], [1, 0]]
       for y in down
         for x in right
           @_thru(x, y, found, momentum)
     if direction is 'left_then_down'
       momentum =
-        vectors: [[0, 1], [-1, 0]]
+        vectors: [[-1, 1], [0, 1], [-1, 0]]
       for y in down
         for x in left
           @_thru(x, y, found, momentum)
     if direction is 'right_then_up'
       momentum =
-        vectors: [[0, -1], [1, 0]]
+        vectors: [[1, -1], [0, -1], [1, 0]]
       for y in up
         for x in right
           @_thru(x, y, found, momentum)
     if direction is 'left_then_up'
       momentum =
-        vectors: [[0, -1], [-1, 0]]
+        vectors: [[-1, -1], [0, -1], [-1, 0]]
       for y in up
         for x in left
           @_thru(x, y, found, momentum)
     if direction is 'down_then_right'
       momentum =
-        vectors: [[0, 1], [1, 0]]
+        vectors: [[1, 1], [0, 1], [1, 0]]
       for x in right
         for y in down
           @_thru(x, y, found, momentum)
     if direction is 'down_then_left'
       momentum =
-        vectors: [[0, 1], [-1, 0]]
+        vectors: [[-1, 1], [0, 1], [-1, 0]]
       for x in left
         for y in down
           @_thru(x, y, found, momentum)
     if direction is 'up_then_right'
       momentum =
-        vectors: [[0, -1], [1, 0]]
+        vectors: [[1, -1], [0, -1], [1, 0]]
       for x in right
         for y in up
           @_thru(x, y, found, momentum)
     if direction is 'up_then_left'
       momentum =
-        vectors: [[0, -1], [-1, 0]]
+        vectors: [[-1, -1], [0, -1], [-1, 0]]
       for x in left
         for y in up
           @_thru(x, y, found, momentum)
