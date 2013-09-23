@@ -7,6 +7,7 @@
 #= require boggle/input_view
 #= require boggle/word_list_view
 #= require boggle/score_view
+#= require moment
 
 Boggle.app = app = new Backbone.Marionette.Application()
 
@@ -51,23 +52,42 @@ for word in answers
 
 score_view = new Boggle.ScoreView
   max_possible_score: max_possible_score
+
+time_limit = moment.duration(0.5, 'minutes')
+
+updateTimerView = ->
+  console.debug 'time_limit',time_limit
+  time_limit.subtract(1, 'second')
+  minutes = Math.floor time_limit.asMinutes()
+  seconds = time_limit.seconds()
+  if seconds > 9
+    time_str = "#{minutes}:#{seconds}"
+  else
+    time_str = "#{minutes}:0#{seconds}"
+  $('[data-js=timer]').text(time_str)
   
 $ ->
   app.play_board_region.show play_board_view
   app.input_region.show input_view
-  # app.answers_region.show answers_view
   app.players_answers_region.show players_answers_view
   app.score_region.show score_view
 
+  updateTimeInterval = setInterval updateTimerView, 1000
+
+  gameOver = ->
+    console.debug 'game over'
+    app.input_region.close()
+    app.answers_region.show answers_view
+    updateTimerView()
+    clearTimeout updateTimeInterval
+  setTimeout gameOver, time_limit.asMilliseconds()
+
   Backbone.listenTo input_view, 'word:submit', (word) ->
     window.word = word
-    console.debug 'answers',answers
     if word in answers
-      console.debug 'answer', word
       players_answers_view.append(word)
       score_view.increment_players_score scoreWord(word)
     else
-      console.debug "'#{word}' is not an answer"
 
 
 

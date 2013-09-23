@@ -14,7 +14,8 @@ class Boggle.ScoreView extends Marionette.ItemView
     @model = new ScoreModel
       max_possible_score: options.max_possible_score
   template: (data) ->
-    "#{data.players_score} / #{data.max_possible_score} (#{Math.round((data.players_score / data.max_possible_score or 0) * 100)}%)"
+    percent = (Math.round (data.players_score / data.max_possible_score or 0) * 1000) / 10
+    "#{data.players_score} / #{data.max_possible_score} (#{percent}%)"
   increment_players_score: (amount) ->
     @model.increment_players_score(amount)
     @render()
