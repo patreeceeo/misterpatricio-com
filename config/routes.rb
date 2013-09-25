@@ -11,6 +11,8 @@ Beer::Application.routes.draw do
   get "intro/python"
   get "intro/general"
 
+  get "intro/boggle"
+
   root :to => 'intro#index'
 
   mount JasmineRails::Engine => '/spec' if defined?(JasmineRails)
