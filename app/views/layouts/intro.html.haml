@@ -1,0 +1,14 @@
+
+= render layout: 'application' do
+
+  %section.spacer
+  = render 'navigation'
+
+  = yield 
+
+  %section.spacer
+
+  #background-credit
+    %p
+      Background adapted from<br>sweet original work<br>
+      by <a href='http://shapesofsweetness.com/'>Corey Thompson</a>.
