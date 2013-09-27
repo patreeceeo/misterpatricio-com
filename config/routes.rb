@@ -11,7 +11,7 @@ Beer::Application.routes.draw do
   get "intro/python"
   get "intro/general"
 
-  get "intro/boggle"
+  get "boggle/play"
 
   root :to => 'intro#index'
 

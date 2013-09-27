@@ -53,7 +53,7 @@ for word in answers
 score_view = new Boggle.ScoreView
   max_possible_score: max_possible_score
 
-time_limit = moment.duration(0.5, 'minutes')
+time_limit = moment.duration(2, 'minutes')
 
 updateTimerView = ->
   console.debug 'time_limit',time_limit

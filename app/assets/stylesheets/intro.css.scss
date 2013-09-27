@@ -3,18 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @font-face {
-    font-family: 'Freckle Face';
-    src: font-url('freckleface-regular-webfont.eot');
-    src: font-url('freckleface-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         font-url('freckleface-regular-webfont.woff') format('woff'),
-         font-url('freckleface-regular-webfont.ttf') format('truetype'),
-         font-url('freckleface-regular-webfont.svg#freckle_faceregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Freckle Face';
+  src: font-url('freckleface-regular-webfont.eot');
+  src: font-url('freckleface-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  font-url('freckleface-regular-webfont.woff') format('woff'),
+  font-url('freckleface-regular-webfont.ttf') format('truetype'),
+  font-url('freckleface-regular-webfont.svg#freckle_faceregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 
 }
 
-body {
+body#intro {
   background-color: #8adb92;
   background-image: url('corey-thompson-dino-opt.jpg');
   background-attachment: fixed;
@@ -24,99 +24,95 @@ body {
 
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   font-size: 1em;
-}
+  
+  // body {
+  // }
 
-h1, h2, h3 {
-  font-family: 'Freckle Face', cursive; 
-}
-h1 {
-  font-size: 200%;
-}
+  h1, h2, h3 {
+    font-family: 'Freckle Face', cursive; 
+  }
+  h1 {
+    font-size: 200%;
+  }
 
-header, section {
-  margin: 0em auto;
-  width: 700px;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 500;
+  header, section {
+    margin: 0em auto;
+    width: 700px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 500;
+    .navigation {
+      margin: 0;
+    }
+  }
+
+  .ib, .tile {
+    display: inline-block;
+  }
+
   .navigation {
+    background-color: white;
+    select {
+      -webkit-appearance: none;
+      appearance: none;
+      padding: 5px;
+      border: 0;
+      cursor: pointer;
+      font-size: 1em;
+    }
+  }
+
+  .gray {
+    color: #777;
+  }
+
+  section {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 2em;
+    // background-color: rgba(255, 255, 255, 0.90);
+    background: white url('crumpled-paper-opt.jpg');
+    background-size: cover;
+    background-repeat: repeat-y;
+  }
+
+  #background-credit {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    font-size: 75%;
+    width: auto;
+    padding: 0.5em;
+    background: transparent none;
+    z-index: 0;
     margin: 0;
-  }
-}
-
-.ib, .tile {
-  display: inline-block;
-}
-
-.navigation {
-  background-color: white;
-  select {
-    -webkit-appearance: none;
-    appearance: none;
-    padding: 5px;
-    border: 0;
-    cursor: pointer;
-    font-size: 1em;
-  }
-}
-
-.gray {
-  color: #777;
-}
-
-section {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  padding: 2em;
-  // background-color: rgba(255, 255, 255, 0.90);
-  background: white url('crumpled-paper-opt.jpg');
-  background-size: cover;
-  background-repeat: repeat-y;
-}
-
-#background-credit {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  font-size: 75%;
-  width: auto;
-  padding: 0.5em;
-  background: transparent none;
-  z-index: 0;
-  margin: 0;
-  text-align: right;
-}
-
-section.spacer {
-  height: 4em;
-  background: transparent none;
-}
-
-/* iphone */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-	img { max-width: 100%; }
-  body {
-    background-image: url('corey-thompson-dino-mobile.jpg');
+    text-align: right;
   }
 
-  section {
-    width: 90%;
+  section.spacer {
+    height: 4em;
+    background: transparent none;
   }
-}
 
-/* ipad */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-	img { max-width: 100%; }
+  /* iphone */
+  @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    img { max-width: 100%; }
+    body {
+      background-image: url('corey-thompson-dino-mobile.jpg');
+    }
 
-  section {
-    width: 80%;
+    section {
+      width: 90%;
+    }
   }
-}
 
-.boggle {
-  & .square {
-    height: 2em;
-    width: 2em;
+  /* ipad */
+  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    img { max-width: 100%; }
+
+    section {
+      width: 80%;
+    }
   }
-}
 
+}

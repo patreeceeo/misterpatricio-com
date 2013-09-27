@@ -11,3 +11,13 @@
  *= require_self
  *= require_tree .
  */
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+
+.ib, .tile {
+  display: inline-block;
+}
