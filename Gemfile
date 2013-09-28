@@ -6,8 +6,8 @@ ruby '1.9.3'
 gem 'rails', '3.2.12'
 
 # Web server
-# gem 'unicorn'
-gem 'thin'
+gem 'unicorn'
+# gem 'thin'
 
 # For caching
 gem 'rack-cache'
