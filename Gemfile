@@ -5,6 +5,9 @@ ruby '1.9.3'
 
 gem 'rails', '3.2.12'
 
+# Web server
+gem 'unicorn'
+
 # For caching
 gem 'rack-cache'
 gem 'dalli'
@@ -32,7 +35,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'thin'
   gem 'rspec-rails', '2.11.0'
   gem 'rspec', '2.11.0'
   gem 'rb-fsevent', '~> 0.9.1'
