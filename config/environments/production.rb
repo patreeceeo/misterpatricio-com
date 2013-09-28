@@ -8,8 +8,9 @@ Beer::Application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  # To disable Rails's static asset server (if Apache or nginx will already do this) set this to false.
+  # Set to true since we're currently using Rack::Cache and memcache for caching static assets.
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -64,4 +65,14 @@ Beer::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  #
+
+  client = Dalli::Client.new(ENV["MEMCACHIER_SERVERS"],
+                           :value_max_bytes => 10485760)
+  config.action_dispatch.rack_cache = {
+    :metastore    => client,
+    :entitystore  => client
+  }
+  config.static_cache_control = "public, max-age=2592000"
+
 end

@@ -67,5 +67,7 @@ module Beer
 
     # Add fonts dir to asset pipeline
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+    config.cache_store = :dalli_store
   end
 end

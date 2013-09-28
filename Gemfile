@@ -5,6 +5,12 @@ ruby '1.9.3'
 
 gem 'rails', '3.2.12'
 
+# For caching
+gem 'rack-cache'
+gem 'dalli'
+gem 'kgio'
+gem 'memcachier'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -23,6 +29,7 @@ end
 group :development do
   gem 'watchr', '0.7'
   gem 'sqlite3', '1.3.8'
+  gem 'thin'
 end
 
 group :development, :test do

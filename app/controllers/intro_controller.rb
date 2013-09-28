@@ -1,4 +1,6 @@
 class IntroController < ApplicationController
+  before_filter :set_headers
+
   def index
   end
 
@@ -22,5 +24,11 @@ class IntroController < ApplicationController
 
   def general
   end
+
+  private
+
+    def set_headers
+      response.headers['Cache-Control'] = 'public, max-age=31536000'
+    end
 
 end
