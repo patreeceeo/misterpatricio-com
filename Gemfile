@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-source :rubyforge
+# source :rubyforge
 
 ruby '1.9.3'
 
@@ -29,10 +29,10 @@ end
 group :development do
   gem 'watchr', '0.7'
   gem 'sqlite3', '1.3.8'
-  gem 'thin'
 end
 
 group :development, :test do
+  gem 'thin'
   gem 'rspec-rails', '2.11.0'
   gem 'rspec', '2.11.0'
   gem 'rb-fsevent', '~> 0.9.1'
