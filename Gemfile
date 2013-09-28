@@ -31,6 +31,7 @@ group :assets do
 end
 
 group :development do
+  gem 'thin'
   gem 'watchr', '0.7'
   gem 'sqlite3', '1.3.8'
 end
