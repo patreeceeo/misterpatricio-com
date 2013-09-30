@@ -6,6 +6,7 @@ class WordModel extends Backbone.Model
   idAttribute: 'word'
   defaults:
     word: ''
+    fromHuman: false
   word: ->
     @get 'word'
 
@@ -14,7 +15,10 @@ class WordCollection extends Backbone.Collection
 
 class WordView extends Marionette.ItemView
   template: (data) ->
-    "<li>#{data.word}</li>"
+    if data.fromHuman
+      "<li class='checked'>#{data.word}</li>"
+    else
+      "<li>#{data.word}</li>"
 
 window.Boggle ?= {}
 class Boggle.WordListView extends Marionette.CollectionView
@@ -26,7 +30,9 @@ class Boggle.WordListView extends Marionette.CollectionView
         {word: word}
     )
   append: (word) ->
-    @collection.push {word: word}
+    @collection.push word: word 
+  addHumanAnswer: (word) ->
+    @collection.push word: word, fromHuman: true
 
   
 

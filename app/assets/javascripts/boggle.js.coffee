@@ -14,7 +14,6 @@ Boggle.app = app = new Backbone.Marionette.Application()
 app.addRegions
   play_board_region: '[data-js=play_board]'
   input_region: '[data-js=input]'
-  players_answers_region: '[data-js=players_answers]'
   answers_region: '[data-js=answers]'
   score_region: '[data-js=score]'
 
@@ -36,11 +35,9 @@ word_finder = new Boggle.WordFinder
   word_bank: word_bank
 
 input_view = new Boggle.InputView()
-window.answers = word_finder.find()
+answers = word_finder.find()
 
-players_answers_view = new Boggle.WordListView()
-answers_view = new Boggle.WordListView
-  word_list: answers
+answers_view = new Boggle.WordListView()
 
 scoreWord = (word) ->
   Math.pow(2, word.length) / 8
@@ -68,15 +65,17 @@ updateTimerView = ->
 $ ->
   app.play_board_region.show play_board_view
   app.input_region.show input_view
-  app.players_answers_region.show players_answers_view
+  app.answers_region.show answers_view
   app.score_region.show score_view
 
+  updateTimerView()
   updateTimeInterval = setInterval updateTimerView, 1000
 
   gameOver = ->
     console.debug 'game over'
     app.input_region.close()
-    app.answers_region.show answers_view
+    for answer in answers
+      answers_view.append answer
     updateTimerView()
     clearTimeout updateTimeInterval
   setTimeout gameOver, time_limit.asMilliseconds()
@@ -84,9 +83,12 @@ $ ->
   Backbone.listenTo input_view, 'word:submit', (word) ->
     window.word = word
     if word in answers
-      players_answers_view.append(word)
-      score_view.increment_players_score scoreWord(word)
+      answers_view.addHumanAnswer word
+      score_view.incrementPlayersScore scoreWord(word)
     else
+
+  Backbone.listenTo input_view, 'game:over', (word) ->
+    gameOver()
 
 
 

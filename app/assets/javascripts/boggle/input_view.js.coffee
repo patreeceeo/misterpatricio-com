@@ -18,31 +18,40 @@ class InputModel extends Backbone.Model
   backspace: ->
     text = @text()
     @set 'text', text.substring(0, text.length-1)
+  length: ->
+    @get('text').length
 
 class Boggle.InputView extends Backbone.View
   initialize: ->
     $(document).keypress @documentKeypress
-    @model = new InputModel()
-    @listenTo @model, 'change', @render
+    @input = new InputModel()
+    @listenTo @input, 'change', @render
   keyboardEvents:
     'enter': (e) ->
       e.preventDefault()
-      @trigger 'word:submit', @model.text()
-      @model.clear()
+      @trigger 'word:submit', @input.text()
+      @input.clear()
     'backspace': (e) ->
-      @model.backspace()
+      @input.backspace()
       e.preventDefault()
+    'ctrl+c': (e) ->
+      @trigger 'game:over'
   documentKeypress: (e) =>
+    _A = 'A'.charCodeAt 0
+    _Z = 'Z'.charCodeAt 0
+    _a = 'a'.charCodeAt 0
+    _z = 'z'.charCodeAt 0
     if not e.ctrlKey and not e.altKey and not e.metaKey and
-        65 <= e.charCode <= 122
+        _A <= e.charCode <= _Z or _a <= e.charCode <= _z and
+        @input.length() <= 16
       e.preventDefault()
       e.stopPropagation()
-      @model.append String.fromCharCode e.charCode
+      @input.append String.fromCharCode e.charCode
   blinkCursor: =>
     @cursor.toggleClass 'hide'
   render: ->
     @cursor = $("<span class='mock_cursor'>_</span>")
-    @$el.text @model.text()
+    @$el.text @input.text()
     @$el.append @cursor
     clearInterval @cursorIntervalID
     @cursorIntervalID = 

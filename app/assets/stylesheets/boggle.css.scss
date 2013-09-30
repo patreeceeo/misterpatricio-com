@@ -2,9 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $screen_color: lightgreen;
-// $play_board_color: #070;
 $play_board_text_color: darken($screen_color, 56%);
-// $general_text_color: #1b5;
 $general_text_color: darken($screen_color, 48%);
 $input_font_size: 2.5em;
 body#boggle {
@@ -21,10 +19,13 @@ body#boggle {
     position: relative;
   }
 
+  .status-bar * {
+    display: inline;
+  }
+
   .timer {
     position: absolute;
     bottom: 100%;
-    display: inline-block;
   }
 
   .play_board {
@@ -48,4 +49,14 @@ body#boggle {
     font-size: $input_font_size;
   }
 
+  .answers {
+    li {
+      &.checked:before {
+        content: "\2713";
+      }
+      &:before {
+        content: "\2000";
+      }
+    }
+  }
 }
