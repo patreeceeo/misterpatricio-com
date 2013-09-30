@@ -17,6 +17,9 @@ app.addRegions
   answers_region: '[data-js=answers]'
   score_region: '[data-js=score]'
 
+app.input_region.on 'close', ->
+  @$el.addClass 'hide'
+
 play_board = new Boggle.PlayBoard
   height: 4
   width: 4

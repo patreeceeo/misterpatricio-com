@@ -5,6 +5,7 @@ $screen_color: lightgreen;
 $play_board_text_color: darken($screen_color, 56%);
 $general_text_color: darken($screen_color, 48%);
 $input_font_size: 2.5em;
+$play_board_font_size: 1.5em;
 body#boggle {
 
   // font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
@@ -34,7 +35,7 @@ body#boggle {
     display: inline-block;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 1em;
+    font-size: $play_board_font_size;
     text-shadow: fade_out($play_board_text_color, 0.8) 0.1em 0.1em;
   }
 
