@@ -14,11 +14,11 @@ class WordCollection extends Backbone.Collection
   model: WordModel
 
 class WordView extends Marionette.ItemView
+  tagName: 'li'
+  className: ->
+    'checked' if @model.get 'fromHuman'
   template: (data) ->
-    if data.fromHuman
-      "<li class='checked'>#{data.word}</li>"
-    else
-      "<li>#{data.word}</li>"
+    data.word
 
 window.Boggle ?= {}
 class Boggle.WordListView extends Marionette.CollectionView

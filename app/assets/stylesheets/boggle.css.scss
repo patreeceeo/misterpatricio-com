@@ -57,6 +57,8 @@ body#boggle {
       &:before {
         content: "\2000";
       }
+      display: inline-block;
+      width: 17ex;
     }
   }
 }
