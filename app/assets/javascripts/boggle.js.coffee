@@ -56,7 +56,6 @@ score_view = new Boggle.ScoreView
 time_limit = moment.duration(2, 'minutes')
 
 updateTimerView = ->
-  console.debug 'time_limit',time_limit
   time_limit.subtract(1, 'second')
   minutes = Math.floor time_limit.asMinutes()
   seconds = time_limit.seconds()

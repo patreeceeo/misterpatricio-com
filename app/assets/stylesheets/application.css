@@ -21,3 +21,7 @@ html, body {
 .ib, .tile {
   display: inline-block;
 }
+
+.hide {
+  display: none;
+}

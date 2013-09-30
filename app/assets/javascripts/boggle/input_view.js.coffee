@@ -38,6 +38,13 @@ class Boggle.InputView extends Backbone.View
       e.preventDefault()
       e.stopPropagation()
       @model.append String.fromCharCode e.charCode
+  blinkCursor: =>
+    @cursor.toggleClass 'hide'
   render: ->
+    @cursor = $("<span class='mock_cursor'>_</span>")
     @$el.text @model.text()
+    @$el.append @cursor
+    clearInterval @cursorIntervalID
+    @cursorIntervalID = 
+    setInterval @blinkCursor, 500
 

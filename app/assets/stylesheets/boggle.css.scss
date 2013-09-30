@@ -1,11 +1,51 @@
 // Place all the styles related to the boggle controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$screen_color: lightgreen;
+// $play_board_color: #070;
+$play_board_text_color: darken($screen_color, 56%);
+// $general_text_color: #1b5;
+$general_text_color: darken($screen_color, 48%);
+$input_font_size: 2.5em;
 body#boggle {
+
+  // font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-family: "Courier New", Courier, monospace;
+  color: $general_text_color;
+  font-size: 200%;
+  background-color: $screen_color;
+
+  .the-game {
+    margin-top: 0.5in;
+    margin-left: 1.5in;
+    position: relative;
+  }
+
+  .timer {
+    position: absolute;
+    bottom: 100%;
+    display: inline-block;
+  }
+
+  .play_board {
+    color: $play_board_text_color;
+    padding-top: 0.5em;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1em;
+    text-shadow: fade_out($play_board_text_color, 0.8) 0.1em 0.1em;
+  }
 
   .square {
     height: 2em;
     width: 2em;
+  }
+
+  .input {
+    text-transform: lowercase;
+    height: $input_font_size / 2;
+    font-size: $input_font_size;
   }
 
 }
