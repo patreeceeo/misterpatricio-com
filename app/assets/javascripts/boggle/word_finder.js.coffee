@@ -97,8 +97,17 @@ class Boggle.WordFinder
     for word of found
       word
   prefixes: (x, y)->
-    @_byCoords[[x, y]] ?= {}
-    @_byCoords[[x, y]].prefixes ?= []
+    coords = [x, y]
+    @_byCoords[coords] ?= {}
+    prefixes = @_byCoords[coords].prefixes ?= []
+    # paths = @_byCoords[coords].paths ?= []
+    # push: (prefix) ->
+    #   paths.push(coords)
+    #   prefixes.push(prefix)
+
+
+
+
                 
 
 

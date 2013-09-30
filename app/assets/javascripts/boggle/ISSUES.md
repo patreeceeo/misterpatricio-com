@@ -3,3 +3,5 @@
 - If you type the same word more than once you get credit for it more than once
 - It occasionally uses the same squares more than once per word
 - Maybe it should always print words in alphabetical order?
+
+- Highlight the word in the grid when its found.
