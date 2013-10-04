@@ -5,105 +5,41 @@ class Boggle.WordFinder
   constructor: (config) ->
     @board = config.play_board
     @bank = config.word_bank
-    @_byCoords = {}
+    @pathsForPrefix = {}
+    @prefixesForSquare = {}
 
-  _thru: (x, y, found, momentum) ->
-    letter = @board.value(x, y)
-    if @bank.lookup(letter)
-      @prefixes(x, y).push letter
-    for vector in momentum.vectors
-      x2 = x - vector[0]
-      y2 = y - vector[1]
-      if @board.square(x, y).isAdjacentTo(x2, y2)
-        for prefix2 in @prefixes(x2, y2)
-          # An attempt to prevent repeated squares:
-          # repeated_squares = false
-          # for prefix in @prefixes(x, y)
-          #   if prefix2.search(prefix) == 0
-          #     repeated_squares = true
-          # if not repeated_squares 
-          new_prefix = "#{prefix2}#{letter}"
-          if @bank.has new_prefix
-            found[new_prefix] = true
-          else if @bank.lookup(new_prefix).length > 0
-            @prefixes(x, y).push new_prefix
+  isPrefix: (string) ->
+    @bank.lookup(string).length > 0
 
-  _going: (direction, found) ->
-    width = @board.width
-    height = @board.height
-    down = [0...height]
-    right = [0...width]
-    left = [width-1..0]
-    up = [height-1..0]
-    if direction is 'right_then_down'
-      momentum =
-        vectors: [[1, 1], [0, 1], [1, 0]]
-      for y in down
-        for x in right
-          @_thru(x, y, found, momentum)
-    if direction is 'left_then_down'
-      momentum =
-        vectors: [[-1, 1], [0, 1], [-1, 0]]
-      for y in down
-        for x in left
-          @_thru(x, y, found, momentum)
-    if direction is 'right_then_up'
-      momentum =
-        vectors: [[1, -1], [0, -1], [1, 0]]
-      for y in up
-        for x in right
-          @_thru(x, y, found, momentum)
-    if direction is 'left_then_up'
-      momentum =
-        vectors: [[-1, -1], [0, -1], [-1, 0]]
-      for y in up
-        for x in left
-          @_thru(x, y, found, momentum)
-    if direction is 'down_then_right'
-      momentum =
-        vectors: [[1, 1], [0, 1], [1, 0]]
-      for x in right
-        for y in down
-          @_thru(x, y, found, momentum)
-    if direction is 'down_then_left'
-      momentum =
-        vectors: [[-1, 1], [0, 1], [-1, 0]]
-      for x in left
-        for y in down
-          @_thru(x, y, found, momentum)
-    if direction is 'up_then_right'
-      momentum =
-        vectors: [[1, -1], [0, -1], [1, 0]]
-      for x in right
-        for y in up
-          @_thru(x, y, found, momentum)
-    if direction is 'up_then_left'
-      momentum =
-        vectors: [[-1, -1], [0, -1], [-1, 0]]
-      for x in left
-        for y in up
-          @_thru(x, y, found, momentum)
-  find: ->
-    found = {}
-    @_going 'right_then_down', found
-    @_going 'left_then_down',  found
-    @_going 'right_then_up',   found
-    @_going 'left_then_up',    found
-    @_going 'down_then_right', found
-    @_going 'down_then_left',  found
-    @_going 'up_then_right',   found
-    @_going 'up_then_left',    found
+  isWord: (string) ->
+    @bank.has string
 
-    for word of found
-      word
-  prefixes: (x, y)->
-    coords = [x, y]
-    @_byCoords[coords] ?= {}
-    prefixes = @_byCoords[coords].prefixes ?= []
-    # paths = @_byCoords[coords].paths ?= []
-    # push: (prefix) ->
-    #   paths.push(coords)
-    #   prefixes.push(prefix)
+  onlyPathsThru: (squareID) ->
+    of: (paths) ->
+      for path in paths
+        path if sid for sid in path when sid is squareID
+
+  findWords: ->
+    retval = []
+    for y in [0..@board.height]
+      for x in [0..@board.width]
+        centerSquareID = "#{x},#{y}"
+        @withEachAdjacentSquare (square, x2, y2) ->
+          squareID = "#{x2},#{y2}"
+          for prefix in @prefixesForSquare[centerSquareID]
+            paths = @onlyPathsThru(centerSquareID).of(@pathsForPrefix[prefix]) or [centerSquareID]
+            prefix += square.value()
+            if @isWord prefix
+              retval.push prefix
+            if @isPrefix prefix
+              @prefixesForSquare[squareID].push prefix
+              for path in paths
+                path.push squareID
+
+  withEachAdjacentSquare: (x, y, fn) ->
+    for dy in [-1, 0, 1]
+      for dx in [-1, 0, 1] when dy isnt 0 and dx isnt 0
+        fn(@board.square(x+dx, y+dy), x+dx, y+dy)
 
 
 
