@@ -16,6 +16,17 @@ describe 'The Boggle Word Finder', ->
       'noodle'
     ]
     play_board = new Boggle.PlayBoard
+      # board: [
+      #   ['b', 'o', 'o', 'g', 'i', 'e', ' ']
+      #   [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      #   [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      #   [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      #   [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      #   [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      #   [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      #   [' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      # ]
+        
       board: [
         [' ', ' ', 'l', 'e', ' ', 'm', 'a']
         [' ', 'o', 'd', ' ', ' ', ' ', ' ']
@@ -30,12 +41,32 @@ describe 'The Boggle Word Finder', ->
       play_board: play_board
       word_bank: word_bank
 
-  it 'should find well hidden words and only one of each, also it should not reuse squares in one word.', ->
+  it 'should find well hidden words and only one of each', ->
+    # also it should not reuse squares in one word.', ->
     expect(finder.find()).toEqual [
       'boogie'
       'noodle'
       'banana'
     ]
+  describe 'withEachAdjacentSquare', ->
+
+    it 'should call the callback 3 times for a corner', ->
+      count = 0
+      finder.withEachAdjacentSquare 0, 0, ->
+        count++
+      expect(count).toBe 3
+
+    it 'should call the callback 5 times for an edge', ->
+      count = 0
+      finder.withEachAdjacentSquare 0, 1, ->
+        count++
+      expect(count).toBe 5
+      
+    it 'should call the callback 8 times for any other', ->
+      count = 0
+      finder.withEachAdjacentSquare 1, 1, ->
+        count++
+      expect(count).toBe 8
 
   describe 'When the board is randomly generated', ->
 
