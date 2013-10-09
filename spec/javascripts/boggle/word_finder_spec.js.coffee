@@ -48,6 +48,7 @@ describe 'The Boggle Word Finder', ->
       'noodle'
       'banana'
     ]
+
   describe 'withEachAdjacentSquare', ->
 
     it 'should call the callback 3 times for a corner', ->
@@ -67,6 +68,24 @@ describe 'The Boggle Word Finder', ->
       finder.withEachAdjacentSquare 1, 1, ->
         count++
       expect(count).toBe 8
+
+  describe '_getPaths', ->
+
+    it 'should return a new path if no such path exists', ->
+      expect(finder._getPaths('4,2', 'foo')).toEqual [['4,2']]
+
+  describe '_buildPaths', ->
+
+    xit 'should add new square to all paths for given squareID and prefix', ->
+
+      finder._buildPaths('4,2', 'foo', '4,3')
+      finder._buildPaths('5,2', 'foo', '4,2')
+      finder._buildPaths('4,2', 'foo', '3,2')
+      expect(finder._getPaths('4,2', 'foo')).toEqual [
+        ['4,2', '4,3', '3,2']
+        ['5,2', '4,2', '3,2']
+      ]
+
 
   describe 'When the board is randomly generated', ->
 

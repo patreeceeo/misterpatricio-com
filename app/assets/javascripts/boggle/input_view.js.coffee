@@ -29,11 +29,12 @@ class Boggle.InputView extends Backbone.View
   keyboardEvents:
     'enter': (e) ->
       e.preventDefault()
-      @trigger 'word:submit', @input.text()
+      @trigger 'submit', @input.text()
       @input.clear()
     'backspace': (e) ->
       @input.backspace()
       e.preventDefault()
+      @trigger 'change', @input.text()
     'ctrl+c': (e) ->
       @trigger 'game:over'
   documentKeypress: (e) =>
@@ -47,6 +48,7 @@ class Boggle.InputView extends Backbone.View
       e.preventDefault()
       e.stopPropagation()
       @input.append String.fromCharCode e.charCode
+      @trigger 'change', @input.text()
   blinkCursor: =>
     @cursor.toggleClass 'hide'
   render: ->
@@ -54,6 +56,6 @@ class Boggle.InputView extends Backbone.View
     @$el.text @input.text()
     @$el.append @cursor
     clearInterval @cursorIntervalID
-    @cursorIntervalID = 
+    @cursorIntervalID =
     setInterval @blinkCursor, 500
 

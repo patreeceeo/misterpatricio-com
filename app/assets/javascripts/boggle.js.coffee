@@ -25,7 +25,7 @@ play_board = new Boggle.PlayBoard
   width: 4
 
 square_collection = new Boggle.SquareCollection(
-  {value: value} for value in play_board.values()
+  play_board.squares()
 )
 
 play_board_view = new Boggle.PlayBoardView
@@ -83,12 +83,16 @@ $ ->
     clearTimeout updateTimeInterval
   setTimeout gameOver, time_limit.asMilliseconds()
 
-  Backbone.listenTo input_view, 'word:submit', (word) ->
-    window.word = word
+  Backbone.listenTo input_view, 'submit', (word) ->
     if word in answers
       answers_view.addHumanAnswer word
       score_view.incrementPlayersScore scoreWord(word)
+      for path in word_finder.getPaths(word)
+        play_board_view.hightlightPath path
     else
+
+  Backbone.listenTo input_view, 'change', (input) ->
+
 
   Backbone.listenTo input_view, 'game:over', (word) ->
     gameOver()

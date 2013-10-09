@@ -5,6 +5,9 @@
 class SquareView extends Marionette.ItemView
   tagName: 'div'
   className: 'boggle square tile'
+  id: -> "#{@model.get('x')},#{@model.get('y')}"
+  attributes: ->
+    'data-square-id': @id()
   modelEvents:
     'change:value': 'render'
   template: (data) ->
@@ -17,5 +20,11 @@ class Boggle.PlayBoardView extends Marionette.CollectionView
   attributes:
     style: 'width: 8em; height: 8em;'
   className: 'boggle board'
+  hightlightPath: (path) ->
+    @$('.boggle.square.tile').removeClass('highlight')
+    for id in path
+      @$("[data-square-id='#{id}']").addClass('highlight')
+
+    
 
 

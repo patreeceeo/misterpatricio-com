@@ -37,12 +37,17 @@ body#boggle {
     font-weight: bold;
     font-size: $play_board_font_size;
     text-shadow: fade_out($play_board_text_color, 0.8) 0.1em 0.1em;
+
+    .highlight {
+      background-color: white;
+    }
   }
 
   .square {
     height: 2em;
     width: 2em;
   }
+
 
   .input {
     text-transform: lowercase;

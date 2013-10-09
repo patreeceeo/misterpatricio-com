@@ -57,8 +57,14 @@ class Boggle.PlayBoard
       @board[y]?[x] = val
     else
       @board[y]?[x]
-  values: ->
-    _.compact _.flatten(@value(x, y) for x in [0..@width] for y in [0..@height])
+  squares: ->
+    _.flatten(
+      for y in [0...@height]
+        for x in [0...@width]
+          value: @value(x, y)
+          x: x
+          y: y
+    )
   toString: ->
     lines =
     for y in [0..@height]
